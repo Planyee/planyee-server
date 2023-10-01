@@ -36,5 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-# MAC
+### MAC ###
 *.DS_Store
+
+### Planyee Config ###
+*.yml
+*.properties
