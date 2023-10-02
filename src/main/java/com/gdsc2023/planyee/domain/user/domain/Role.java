@@ -3,8 +3,8 @@ package com.gdsc2023.planyee.domain.user.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Getter
+@RequiredArgsConstructor
 public enum Role {
     GUEST("ROLE_GUEST"),
     USER("ROLE_USER");
