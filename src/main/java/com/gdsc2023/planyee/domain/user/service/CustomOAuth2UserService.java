@@ -3,7 +3,6 @@ package com.gdsc2023.planyee.domain.user.service;
 import java.util.Collections;
 
 import com.gdsc2023.planyee.domain.user.domain.SessionUser;
-import com.mysql.cj.Session;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,7 +40,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         // DB에 유저정보 업데이트 & 세션 저장
         User user = save(attributes);
-        httpSession.setAttribute(user.getOauthId(), new SessionUser(user));
+        httpSession.setAttribute("user", new SessionUser(user));
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRole().getKey())),
