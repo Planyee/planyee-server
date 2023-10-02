@@ -1,8 +1,11 @@
-package com.gdsc2023.planyee.domain.user.domain;
-
-import lombok.Getter;
+package com.gdsc2023.planyee.global.config.oauth;
 
 import java.io.Serializable;
+
+import com.gdsc2023.planyee.domain.user.domain.Gender;
+import com.gdsc2023.planyee.domain.user.domain.User;
+
+import lombok.Getter;
 
 @Getter
 public class SessionUser implements Serializable {

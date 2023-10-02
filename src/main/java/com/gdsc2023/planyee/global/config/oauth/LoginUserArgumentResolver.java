@@ -1,6 +1,5 @@
 package com.gdsc2023.planyee.global.config.oauth;
 
-import com.gdsc2023.planyee.domain.user.domain.SessionUser;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.core.MethodParameter;
@@ -8,9 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.method.support.ModelAndViewContainer;
 
 @RequiredArgsConstructor
 @Component

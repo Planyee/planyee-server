@@ -1,7 +1,10 @@
-package com.gdsc2023.planyee.domain.user.domain;
+package com.gdsc2023.planyee.global.config.oauth;
 
 import java.util.Map;
 
+import com.gdsc2023.planyee.domain.user.domain.Gender;
+import com.gdsc2023.planyee.domain.user.domain.Role;
+import com.gdsc2023.planyee.domain.user.domain.User;
 import com.gdsc2023.planyee.global.util.DateUtil;
 
 import lombok.Builder;

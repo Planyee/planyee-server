@@ -2,7 +2,6 @@ package com.gdsc2023.planyee.domain.user.service;
 
 import java.util.Collections;
 
-import com.gdsc2023.planyee.domain.user.domain.SessionUser;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,9 +13,10 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.gdsc2023.planyee.domain.user.domain.OAuthAttributes;
 import com.gdsc2023.planyee.domain.user.domain.User;
 import com.gdsc2023.planyee.domain.user.repository.UserRepository;
+import com.gdsc2023.planyee.global.config.oauth.OAuthAttributes;
+import com.gdsc2023.planyee.global.config.oauth.SessionUser;
 
 import lombok.RequiredArgsConstructor;
 
