@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 
 @Getter
 @Entity
+@Table(name = "places")
 @NoArgsConstructor
 public class Place extends BaseEntity {
 
@@ -31,8 +32,7 @@ public class Place extends BaseEntity {
     private BigDecimal longitude;
 
     @Builder
-    public Place(Long id, String name, BigDecimal latitude, BigDecimal longitude) {
-        this.id = id;
+    public Place(String name, BigDecimal latitude, BigDecimal longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
