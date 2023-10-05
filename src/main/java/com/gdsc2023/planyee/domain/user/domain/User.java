@@ -1,5 +1,7 @@
 package com.gdsc2023.planyee.domain.user.domain;
 
+import com.gdsc2023.planyee.domain.place.domain.Place;
+import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import jakarta.persistence.*;
 
 import com.gdsc2023.planyee.domain.common.BaseEntity;
@@ -7,6 +9,8 @@ import com.gdsc2023.planyee.domain.common.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -34,6 +38,12 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Plan> planList;
+
+
+
 
     @Builder
     private User(String oauthId, String nickname, Gender gender, Integer age, Role role) {
