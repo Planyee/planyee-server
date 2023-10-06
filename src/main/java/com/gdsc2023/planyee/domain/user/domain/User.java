@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.domain.user.domain;
 
+import com.gdsc2023.planyee.domain.common.bridge_entity.UserPlace;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import jakarta.persistence.*;
@@ -41,6 +42,9 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Plan> planList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserPlace> placeList;
 
 
 
