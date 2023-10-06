@@ -1,7 +1,7 @@
 package com.gdsc2023.planyee.domain.category.domain;
 
 
-import com.gdsc2023.planyee.domain.common.PlaceCategory;
+import com.gdsc2023.planyee.domain.common.bridge_entity.PlaceCategory;
 
 import jakarta.persistence.*;
 import lombok.Builder;

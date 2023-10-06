@@ -1,15 +1,11 @@
 package com.gdsc2023.planyee.domain.place.domain;
 
 import com.gdsc2023.planyee.domain.common.BaseEntity;
-import com.gdsc2023.planyee.domain.common.PlaceCategory;
-import com.gdsc2023.planyee.domain.user.domain.Gender;
-import com.gdsc2023.planyee.domain.user.domain.Role;
+import com.gdsc2023.planyee.domain.common.bridge_entity.PlaceCategory;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.List;
 
 

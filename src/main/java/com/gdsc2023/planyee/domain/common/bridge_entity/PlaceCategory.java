@@ -1,7 +1,8 @@
-package com.gdsc2023.planyee.domain.common;
+package com.gdsc2023.planyee.domain.common.bridge_entity;
 
 
 import com.gdsc2023.planyee.domain.category.domain.Category;
+import com.gdsc2023.planyee.domain.common.BaseEntity;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "place_categories")
 @NoArgsConstructor
-public class PlaceCategory extends BaseEntity{
+public class PlaceCategory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
