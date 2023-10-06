@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table(name = "user_categories")
+@Table(name = "user_places")
 @NoArgsConstructor
 public class UserPlace {
 
