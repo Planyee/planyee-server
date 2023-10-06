@@ -33,4 +33,5 @@ public class PlaceCategory extends BaseEntity {
         this.place = place;
         this.category = category;
     }
+
 }

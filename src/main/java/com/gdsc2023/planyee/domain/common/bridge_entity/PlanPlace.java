@@ -1,18 +1,17 @@
 package com.gdsc2023.planyee.domain.common.bridge_entity;
 
-
 import com.gdsc2023.planyee.domain.category.domain.Category;
 import com.gdsc2023.planyee.domain.place.domain.Place;
-import com.gdsc2023.planyee.domain.user.domain.User;
+import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table(name = "user_places")
+@Table(name = "plan_places")
 @NoArgsConstructor
-public class UserPlace {
+public class PlanPlace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +19,11 @@ public class UserPlace {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_place", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "plan_place", referencedColumnName = "id")
+    private Plan plan;
 
     @ManyToOne
-    @JoinColumn(name = "place_user", referencedColumnName = "id")
+    @JoinColumn(name = "place_plan", referencedColumnName = "id")
     private Place place;
 
 }

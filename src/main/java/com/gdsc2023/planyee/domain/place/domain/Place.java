@@ -36,6 +36,9 @@ public class Place extends BaseEntity {
     @OneToMany(mappedBy = "place")
     private List<User> userList;
 
+    @OneToMany(mappedBy = "place")
+    private List<User> planList;
+
     @Builder
     public Place(String name, BigDecimal latitude, BigDecimal longitude) {
         this.name = name;
