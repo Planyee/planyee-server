@@ -1,10 +1,14 @@
 package com.gdsc2023.planyee.domain.category.domain;
 
 
+import com.gdsc2023.planyee.domain.common.PlaceCategory;
+
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @Entity
@@ -19,6 +23,9 @@ public class Category {
 
     @Column(length = 20)
     private String name;
+
+    @OneToMany
+    private List<PlaceCategory> placeList;
 
     @Builder
     public Category(String name) {

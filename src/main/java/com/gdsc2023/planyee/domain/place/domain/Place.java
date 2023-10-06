@@ -1,6 +1,7 @@
 package com.gdsc2023.planyee.domain.place.domain;
 
 import com.gdsc2023.planyee.domain.common.BaseEntity;
+import com.gdsc2023.planyee.domain.common.PlaceCategory;
 import com.gdsc2023.planyee.domain.user.domain.Gender;
 import com.gdsc2023.planyee.domain.user.domain.Role;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.List;
 
 
 @Getter
@@ -30,6 +32,9 @@ public class Place extends BaseEntity {
 
     @Column(nullable = false)
     private BigDecimal longitude;
+
+    @OneToMany(mappedBy = "place")
+    private List<PlaceCategory> CategoryList;
 
     @Builder
     public Place(String name, BigDecimal latitude, BigDecimal longitude) {
