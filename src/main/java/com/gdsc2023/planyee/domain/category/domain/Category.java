@@ -1,8 +1,8 @@
 package com.gdsc2023.planyee.domain.category.domain;
 
 
-import com.gdsc2023.planyee.domain.common.bridge_entity.PlaceCategory;
 
+import com.gdsc2023.planyee.domain.place.domain.Place;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,8 +24,8 @@ public class Category {
     @Column(length = 20)
     private String name;
 
-    @OneToMany
-    private List<PlaceCategory> placeList;
+    @ManyToMany(mappedBy = "categoryList")
+    private List<Place> placeList;
 
     @Builder
     public Category(String name) {

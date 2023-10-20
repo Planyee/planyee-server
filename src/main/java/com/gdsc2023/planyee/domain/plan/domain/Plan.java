@@ -1,7 +1,7 @@
 package com.gdsc2023.planyee.domain.plan.domain;
 
 import com.gdsc2023.planyee.domain.common.BaseEntity;
-import com.gdsc2023.planyee.domain.common.bridge_entity.PlanPlace;
+import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -33,8 +33,13 @@ public class Plan extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "plan")
-    private List<PlanPlace> placeList;
+    @ManyToMany
+    @JoinTable(
+            name = "plan_place",
+            joinColumns = @JoinColumn(name = "place_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Place> placeList;
 
     @Column(nullable = false)
     private BigDecimal sourceLatitude;
