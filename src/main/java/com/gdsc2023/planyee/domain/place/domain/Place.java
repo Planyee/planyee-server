@@ -1,14 +1,14 @@
 package com.gdsc2023.planyee.domain.place.domain;
 
+import com.gdsc2023.planyee.domain.category.domain.Category;
 import com.gdsc2023.planyee.domain.common.BaseEntity;
-import com.gdsc2023.planyee.domain.user.domain.Gender;
-import com.gdsc2023.planyee.domain.user.domain.Role;
+import com.gdsc2023.planyee.domain.plan.domain.Plan;
+import com.gdsc2023.planyee.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
+import java.util.List;
 
 
 @Getter
@@ -30,6 +30,20 @@ public class Place extends BaseEntity {
 
     @Column(nullable = false)
     private BigDecimal longitude;
+
+    @ManyToMany
+    @JoinTable(
+            name = "place_category",
+            joinColumns = @JoinColumn(name = "place_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categoryList;
+
+    @ManyToMany(mappedBy = "preferredPlaces")
+    private List<User> userList;
+
+    @ManyToMany(mappedBy = "placeList")
+    private List<Plan> planList;
 
     @Builder
     public Place(String name, BigDecimal latitude, BigDecimal longitude) {

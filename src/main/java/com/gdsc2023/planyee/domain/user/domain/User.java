@@ -42,6 +42,14 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Plan> planList;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_place",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "place_id")
+    )
+    private List<Place> preferredPlaces;
+
 
 
 
