@@ -16,7 +16,6 @@ import java.util.List;
 
 @Getter
 @Entity
-@Table(name = "plans")
 @NoArgsConstructor
 public class Plan extends BaseEntity {
 
@@ -36,8 +35,8 @@ public class Plan extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "plan_place",
-            joinColumns = @JoinColumn(name = "place_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
+            joinColumns = @JoinColumn(name = "plan_id"),
+            inverseJoinColumns = @JoinColumn(name = "place_id")
     )
     private List<Place> placeList;
 
@@ -53,17 +52,17 @@ public class Plan extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal destinationLongitude;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate date;
 
-    @Column(nullable = false)
-    private LocalDateTime startTime;
-
-    @Column(nullable = false)
-    private LocalDateTime arrivalTime;
-
     @Builder
-    public Plan(String name, User user, BigDecimal sourceLatitude, BigDecimal sourceLongitude, BigDecimal destinationLatitude, BigDecimal destinationLongitude, LocalDate date, LocalDateTime startTime, LocalDateTime arrivalTime) {
+    public Plan(String name,
+        User user,
+        BigDecimal sourceLatitude,
+        BigDecimal sourceLongitude,
+        BigDecimal destinationLatitude,
+        BigDecimal destinationLongitude,
+        LocalDate date) {
         this.name = name;
         this.user = user;
         this.sourceLatitude = sourceLatitude;
@@ -71,7 +70,5 @@ public class Plan extends BaseEntity {
         this.destinationLatitude = destinationLatitude;
         this.destinationLongitude = destinationLongitude;
         this.date = date;
-        this.startTime = startTime;
-        this.arrivalTime = arrivalTime;
     }
 }

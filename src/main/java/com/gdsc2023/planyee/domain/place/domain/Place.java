@@ -45,24 +45,21 @@ public class Place extends BaseEntity {
     @Column
     private String etc;
 
+
     @ManyToMany
     @JoinTable(
-            name = "place_category",
-            joinColumns = @JoinColumn(name = "place_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+        name = "place_category",
+        joinColumns = @JoinColumn(name = "place_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categoryList;
-
-    @ManyToMany(mappedBy = "preferredPlaces")
-    private List<User> userList;
 
     @ManyToMany(mappedBy = "placeList")
     private List<Plan> planList;
 
     @Builder
-    public Place(Long id, String name, BigDecimal latitude, BigDecimal longitude, String address, String imageUrl,
+    public Place(String name, BigDecimal latitude, BigDecimal longitude, String address, String imageUrl,
         String description, String review, String etc) {
-        this.id = id;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;

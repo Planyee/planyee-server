@@ -1,8 +1,8 @@
 package com.gdsc2023.planyee.domain.category.domain;
 
-
-
 import com.gdsc2023.planyee.domain.place.domain.Place;
+import com.gdsc2023.planyee.domain.user.domain.User;
+
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @Entity
-@Table(name = "categories")
 @NoArgsConstructor
 public class Category {
 
@@ -29,6 +28,9 @@ public class Category {
 
     @ManyToMany(mappedBy = "categoryList")
     private List<Place> placeList;
+
+    @ManyToMany(mappedBy = "preferredCategories")
+    private List<User> userList;
 
     @Builder
     public Category(String name, String mainCategory) {
