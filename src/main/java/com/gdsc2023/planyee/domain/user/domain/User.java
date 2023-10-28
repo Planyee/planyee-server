@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.domain.user.domain;
 
+import com.gdsc2023.planyee.domain.category.domain.Category;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import jakarta.persistence.*;
@@ -10,11 +11,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Table(name = "users")
 @Entity
 public class User extends BaseEntity {
     @Id
@@ -33,7 +34,7 @@ public class User extends BaseEntity {
     private Gender gender;
 
     @Column(nullable = false)
-    private Integer age;
+    private LocalDate birthYear;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -44,21 +45,18 @@ public class User extends BaseEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_place",
+            name = "user_category",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "place_id")
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Place> preferredPlaces;
-
-
-
+    private List<Category> preferredCategories;
 
     @Builder
-    private User(String oauthId, String nickname, Gender gender, Integer age, Role role) {
+    private User(String oauthId, String nickname, Gender gender, LocalDate birthYear, Role role) {
         this.oauthId = oauthId;
         this.nickname = nickname;
         this.gender = gender;
-        this.age = age;
+        this.birthYear = birthYear;
         this.role = role;
     }
 }

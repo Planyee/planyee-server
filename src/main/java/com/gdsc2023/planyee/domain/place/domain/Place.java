@@ -13,7 +13,6 @@ import java.util.List;
 
 @Getter
 @Entity
-@Table(name = "places")
 @NoArgsConstructor
 public class Place extends BaseEntity {
 
@@ -25,30 +24,49 @@ public class Place extends BaseEntity {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private BigDecimal latitude;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private BigDecimal longitude;
+
+    @Column(nullable = false, length = 100)
+    private String address;
+
+    @Column(length = 255)
+    private String imageUrl;
+
+    @Column
+    private String description;
+
+    @Column
+    private String review;
+
+    @Column
+    private String etc;
+
 
     @ManyToMany
     @JoinTable(
-            name = "place_category",
-            joinColumns = @JoinColumn(name = "place_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+        name = "place_category",
+        joinColumns = @JoinColumn(name = "place_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categoryList;
-
-    @ManyToMany(mappedBy = "preferredPlaces")
-    private List<User> userList;
 
     @ManyToMany(mappedBy = "placeList")
     private List<Plan> planList;
 
     @Builder
-    public Place(String name, BigDecimal latitude, BigDecimal longitude) {
+    public Place(String name, BigDecimal latitude, BigDecimal longitude, String address, String imageUrl,
+        String description, String review, String etc) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.address = address;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.review = review;
+        this.etc = etc;
     }
 }
