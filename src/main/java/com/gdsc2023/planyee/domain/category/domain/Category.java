@@ -21,14 +21,18 @@ public class Category {
     @Column(unique = true, updatable = false)
     private Long id;
 
-    @Column(length = 20)
+    @Column(length = 50)
     private String name;
+
+    @Column(length = 20)
+    private String mainCategory;
 
     @ManyToMany(mappedBy = "categoryList")
     private List<Place> placeList;
 
     @Builder
-    public Category(String name) {
+    public Category(String name, String mainCategory) {
         this.name = name;
+        this.mainCategory = mainCategory;
     }
 }
