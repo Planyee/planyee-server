@@ -18,6 +18,6 @@ public class SessionUser implements Serializable {
         this.oauthId = user.getOauthId();
         this.nickname = user.getNickname();
         this.gender = user.getGender();
-        this.age = user.getAge();
+//        this.age = user.getAge();
     }
 }

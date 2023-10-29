@@ -44,7 +44,6 @@ public class OAuthAttributes {
                 .oauthId(oauthId)
                 .nickname(nickname)
                 .gender(Gender.fromKey(gender))
-                .age(toAge(birthyear))
                 .role(Role.USER)
                 .build();
     }
