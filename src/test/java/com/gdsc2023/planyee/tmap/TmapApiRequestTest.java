@@ -1,39 +1,33 @@
 package com.gdsc2023.planyee.tmap;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gdsc2023.planyee.domain.tmap.domain.TmapApiRequestParam;
-import com.gdsc2023.planyee.domain.tmap.domain.TmapApiResponseParam.Coordinate;
-import com.gdsc2023.planyee.domain.tmap.domain.TmapApiResponseParam.Feature;
-import com.gdsc2023.planyee.domain.tmap.domain.TmapApiResponseParam.FeatureCollection;
-import com.gdsc2023.planyee.domain.tmap.domain.TmapApiResponseParam.Geometry;
-import com.gdsc2023.planyee.domain.tmap.service.TmapApiRoutesService;
-import com.mysql.cj.xdevapi.JsonString;
-import com.nimbusds.jose.shaded.gson.JsonElement;
-import com.nimbusds.jose.shaded.gson.JsonObject;
-import io.swagger.v3.core.util.Json;
+import com.gdsc2023.planyee.domain.tmap.domain.apiRequestParam;
+import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
+import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Feature;
+import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.FeatureCollection;
+import com.gdsc2023.planyee.domain.tmap.service.routesApiService;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.util.StopWatch;
 
 
-@RestClientTest(value = {TmapApiRoutesService.class})
+@RestClientTest(value = {routesApiService.class})
 @MockBean(JpaMetamodelMappingContext.class)
 public class TmapApiRequestTest {
 
 
     @Autowired
-    TmapApiRoutesService apiRoutesService;
+    routesApiService apiRoutesService;
 
     @Autowired
     private MockRestServiceServer mockServer;
@@ -42,29 +36,33 @@ public class TmapApiRequestTest {
     @DisplayName("자동차 경로 api의 반환값 확인")
     void carRequestTest() throws Exception {
 
-        TmapApiRequestParam requestParam = TmapApiRequestParam.builder()
-                .endX(new BigDecimal("129.07579349764512"))
-                .endY(new BigDecimal("35.17883196265564"))
-                .startX(new BigDecimal("126.98217734415019"))
-                .startY(new BigDecimal("37.56468648536046"))
-                .build();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
 
+        apiRequestParam requestParam = apiRequestParam.builder()
+                                                      .endX(new BigDecimal("126.9235355222221"))
+                                                      .endY(new BigDecimal("37.460122514035135"))
+                                                      .startX(new BigDecimal("126.88462351538156"))
+                                                      .startY(new BigDecimal("37.47955275185523"))
+                                                      .build();
 
         ResponseEntity<String> entity = apiRoutesService.requestCarRoutes(requestParam);
+        stopWatch.stop();
 
         String body = entity.getBody();
 
         ObjectMapper objectMapper = new ObjectMapper();
-
         FeatureCollection fc = objectMapper.readValue(body, FeatureCollection.class);
 
-        List<Coordinate> coordinates = fc.getFeatures()
-                                        .stream()
-                                        .map(Feature::getGeometry)
-                                        .flatMap(geometry -> geometry.getCoordinates().stream())
-                                         .toList();
 
-        System.out.println("coordinates = " + coordinates);
+        List<Coordinate> coordinates = new ArrayList<>();
+
+        List<Feature>  features   =  fc.getFeatures();
+
+        features.forEach(feature -> coordinates.addAll(feature.getGeometry().getCoordinates()));
+
+        System.out.println(stopWatch.prettyPrint());
+
 
 
     }

@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class TmapApiRequestParam {
+public class apiRequestParam {
 
     @NotNull
     private BigDecimal endX;
