@@ -12,12 +12,12 @@ public class SessionUser implements Serializable {
     private String oauthId;
     private String nickname;
     private Gender gender;
-    private Integer age;
+//    private Integer age;
 
     public SessionUser(User user) {
         this.oauthId = user.getOauthId();
         this.nickname = user.getNickname();
         this.gender = user.getGender();
-        this.age = user.getAge();
+//        this.age = user.getAge();
     }
 }
