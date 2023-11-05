@@ -45,12 +45,8 @@ public class OAuthAttributes {
                 .oauthId(oauthId)
                 .nickname(nickname)
                 .gender(Gender.fromKey(gender))
-                .birthYear(LocalDate.now())
+                .birthYear(birthyear)
                 .role(Role.USER)
                 .build();
-    }
-
-    private Integer toAge(Integer birthyear) {
-        return DateUtil.getCurrentYear() - birthyear + 1;
     }
 }

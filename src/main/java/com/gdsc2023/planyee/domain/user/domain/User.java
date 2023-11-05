@@ -34,7 +34,7 @@ public class User extends BaseEntity {
     private Gender gender;
 
     @Column(nullable = false)
-    private LocalDate birthYear;
+    private Integer birthYear;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -52,7 +52,7 @@ public class User extends BaseEntity {
     private List<Category> preferredCategories;
 
     @Builder
-    private User(String oauthId, String nickname, Gender gender, LocalDate birthYear, Role role) {
+    private User(String oauthId, String nickname, Gender gender, Integer birthYear, Role role) {
         this.oauthId = oauthId;
         this.nickname = nickname;
         this.gender = gender;
