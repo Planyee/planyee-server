@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.global.config.oauth;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import com.gdsc2023.planyee.domain.user.domain.Gender;
@@ -44,11 +45,8 @@ public class OAuthAttributes {
                 .oauthId(oauthId)
                 .nickname(nickname)
                 .gender(Gender.fromKey(gender))
+                .birthYear(birthyear)
                 .role(Role.USER)
                 .build();
-    }
-
-    private Integer toAge(Integer birthyear) {
-        return DateUtil.getCurrentYear() - birthyear + 1;
     }
 }

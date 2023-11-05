@@ -7,4 +7,8 @@ public class DateUtil {
     public static Integer getCurrentYear() {
         return Year.now().getValue();
     }
+
+    public static Integer getAgeByBirthyear(Integer birthyear) {
+        return getCurrentYear() - birthyear + 1;
+    }
 }

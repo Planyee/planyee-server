@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.global.config.oauth;
 
+import com.gdsc2023.planyee.global.util.DateUtil;
 import java.io.Serializable;
 
 import com.gdsc2023.planyee.domain.user.domain.Gender;
@@ -18,6 +19,6 @@ public class SessionUser implements Serializable {
         this.oauthId = user.getOauthId();
         this.nickname = user.getNickname();
         this.gender = user.getGender();
-//        this.age = user.getAge();
+        this.age = DateUtil.getAgeByBirthyear(user.getBirthYear());
     }
 }

@@ -24,10 +24,10 @@ public class Place extends BaseEntity {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(precision = 11, scale = 8, nullable = true)
     private BigDecimal latitude;
 
-    @Column(nullable = true)
+    @Column(precision = 11, scale = 8, nullable = true)
     private BigDecimal longitude;
 
     @Column(nullable = false, length = 100)
