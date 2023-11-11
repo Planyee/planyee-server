@@ -2,6 +2,8 @@ package com.gdsc2023.planyee.domain.tmap.service;
 
 
 import com.gdsc2023.planyee.domain.tmap.domain.apiRequestParam;
+import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,6 +37,10 @@ public class routesApiService {
         HttpEntity<apiRequestParam> entity = new HttpEntity<>(requestParam, headers);
 
         return restTemplate.exchange(builder.toUriString(), HttpMethod.POST, entity, String.class);
+
+    }
+
+    public ResponseEntity<String> calculateDistance(List<Coordinate> coordinates) {
 
     }
 
