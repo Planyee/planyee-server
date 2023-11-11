@@ -3,7 +3,8 @@ package com.gdsc2023.planyee.tmap;
 
 import com.gdsc2023.planyee.domain.tmap.controller.routesApiController;
 import com.gdsc2023.planyee.domain.tmap.domain.ApiRequestParam;
-import com.gdsc2023.planyee.domain.tmap.dto.PlaceDistanceDto;
+import com.gdsc2023.planyee.domain.tmap.dto.MileStone;
+import com.gdsc2023.planyee.domain.tmap.dto.UserRouteDto;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -28,9 +29,9 @@ public class TmapApiControllerTest {
             .startY(new BigDecimal("37.47955275185523"))
             .build();
 
-        List<PlaceDistanceDto> placeDistanceList = routesApiController.calculatePlaceDistance(requestParam);
+        UserRouteDto userRouteDto = routesApiController.calculateMilestones(requestParam);
 
-        System.out.println(placeDistanceList);
+        System.out.println(userRouteDto);
     }
 
 
