@@ -9,7 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 
     List<Place> findAll();
-    @Query(value = "SELECT * FROM (SELECT * FROM place JOIN place_category pc ON place.id = pc.place_id ORDER BY RAND()) AS randomized GROUP BY category_id", nativeQuery = true)
+    @Query(value = "SELECT *\n"
+            + "FROM (\n"
+            + "    SELECT *, ROW_NUMBER() OVER (PARTITION BY pc.category_id ORDER BY RAND()) as rn\n"
+            + "    FROM place\n"
+            + "    JOIN place_category pc ON place.id = pc.place_id\n"
+            + ") as random_places\n"
+            + "WHERE rn = 1;", nativeQuery = true)
     List<Place> findRandomPlaceByCategories();
 
 }

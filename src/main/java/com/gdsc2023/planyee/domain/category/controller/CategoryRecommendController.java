@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,7 +30,7 @@ public class CategoryRecommendController {
     }
 
     @PostMapping
-    public AiPlaceRecommendDto giveUserPlaceChoiceToAi(@LoginUser SessionUser user, Long selectedPlaceId) {
+    public AiPlaceRecommendDto giveUserPlaceChoiceToAi(@LoginUser SessionUser user, @RequestParam("id") Long selectedPlaceId) {
 
         return categoryFetchService.createAiPlaceRecommendDto(user, selectedPlaceId);
 
