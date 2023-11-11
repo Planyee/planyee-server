@@ -29,7 +29,7 @@ public class AiRequestService {
         headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
         headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 
-        HttpEntity<List<PlaceDistanceDto>> entity = new HttpEntity<>(placeDistances, headers);
+        HttpEntity<PlaceDistanceDto> entity = new HttpEntity<>(placeDistances, headers);
 
         return restTemplate.exchange(builder.toUriString(), HttpMethod.POST, entity, String.class);
     }

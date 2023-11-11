@@ -78,8 +78,7 @@ public class routesApiService {
                 }
             }
 
-            PlaceDistanceDto placeDistanceDto = new PlaceDistanceDto(placeId, placeLatitude, placeLongitude,
-                    result.get(placeId));
+            PlaceDistanceDto placeDistanceDto = new PlaceDistanceDto();
             placeDistanceList.add(placeDistanceDto);
         }
 

@@ -1,6 +1,8 @@
 package com.gdsc2023.planyee.domain.tmap.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -10,17 +12,17 @@ import lombok.ToString;
 @ToString
 public class PlaceDistanceDto {
 
-        public long id;
-        public BigDecimal placeLongitude;
-        public BigDecimal placeLatitude;
-        public BigDecimal distance;
+        List<String> userPrefferedPlaces;
+        List<String> planPrefferedPlaces;
+        String additionalCondition;
+        Map<String, BigDecimal> distances;
 
-        public PlaceDistanceDto(long id, BigDecimal placeLatitude, BigDecimal placeLongitude,  BigDecimal distance) {
-            this.id = id;
-            this.placeLatitude = placeLatitude;
-            this.placeLongitude = placeLongitude;
-            this.distance = distance;
-        }
-
-
+    public PlaceDistanceDto(List<String> userPrefferedPlaces, List<String> planPrefferedPlaces,
+                            String additionalCondition,
+                            Map<String, BigDecimal> distances) {
+        this.userPrefferedPlaces = userPrefferedPlaces;
+        this.planPrefferedPlaces = planPrefferedPlaces;
+        this.additionalCondition = additionalCondition;
+        this.distances = distances;
+    }
 }

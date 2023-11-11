@@ -4,6 +4,7 @@ import com.gdsc2023.planyee.domain.place.domain.Place;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 public interface PlaceRepository extends JpaRepository<Place, Long> {
@@ -18,4 +19,6 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
             + "WHERE rn = 1;", nativeQuery = true)
     List<Place> findRandomPlaceByCategories();
 
+    @Query(value = "SELECT place FROM place JOIN user_place ON place.id = user_place.place_id WHERE user.id = :userId", nativeQuery = true)
+    List<Place> findPrefferedPlaceByUserId(@Param("userId") Long userId);
 }
