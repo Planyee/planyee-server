@@ -2,9 +2,11 @@ package com.gdsc2023.planyee.global.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.gdsc2023.planyee.domain.user.service.CustomOAuth2UserService;
@@ -26,11 +28,13 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                         .anyRequest().permitAll())
                 .oauth2Login((login) -> login
-                        .defaultSuccessUrl("/")
+                        .defaultSuccessUrl("http://localhost:3000/select")
                         .userInfoEndpoint((endpoint) -> endpoint
                                 .userService(customOAuth2UserService)
                         )
-                );
+                ).cors(Customizer.withDefaults());
+
+        ;
 
         return http.build();
     }
