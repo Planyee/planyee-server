@@ -5,10 +5,10 @@ import com.gdsc2023.planyee.domain.tmap.service.routesApiService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class ApiConfig {
 
-    @Bean
+
     public routesApiService tmapApiRoutesService() {
         return new routesApiService();
     }

@@ -54,9 +54,9 @@ public class apiResponseParam {
     public static class Coordinate {
 
         @JsonCreator
-        public Coordinate(@JsonProperty("0") BigDecimal latitude, @JsonProperty("1") BigDecimal longitude) {
+        public Coordinate(@JsonProperty("0") BigDecimal longtitude, @JsonProperty("1") BigDecimal latitude) {
+            this.longitude = longtitude;
             this.latitude = latitude;
-            this.longitude = longitude;
         }
 
         private final BigDecimal latitude;
