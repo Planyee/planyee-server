@@ -22,7 +22,7 @@ public class CategoryRecommendController {
     CategoryFetchService categoryFetchService;
 
 
-    @GetMapping
+    @GetMapping("/select")
     public List<CategoryRecommendDto> showCategoryRecommend(@LoginUser SessionUser user) {
 
         return  categoryFetchService.getCategoryRecommendationOneByOne();
