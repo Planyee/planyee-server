@@ -57,6 +57,9 @@ public class Place extends BaseEntity {
     @ManyToMany(mappedBy = "placeList")
     private List<Plan> planList;
 
+    @ManyToMany(mappedBy = "preferredPlaces")
+    private List<User> userList;
+
     @Builder
     public Place(String name, BigDecimal latitude, BigDecimal longitude, String address, String imageUrl,
         String description, String review, String etc) {
