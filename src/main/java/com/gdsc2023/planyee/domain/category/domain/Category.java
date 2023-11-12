@@ -29,9 +29,6 @@ public class Category {
     @ManyToMany(mappedBy = "categoryList")
     private List<Place> placeList;
 
-    @ManyToMany(mappedBy = "preferredCategories")
-    private List<User> userList;
-
     @Builder
     public Category(String name, String mainCategory) {
         this.name = name;

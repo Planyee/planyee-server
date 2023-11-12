@@ -15,11 +15,10 @@ public class MileStoneDtoFactoryService {
 
     private final PlaceRepository placeRepository;
 
-    public List<MileStone> createMileStonesWith(List<Long> placeIds) {
+    public List<MileStone> createMileStonesWith(List<Place> milestonePlaces) {
 
         List<MileStone> mileStones = new ArrayList<>();
 
-        List<Place> milestonePlaces = placeRepository.findAllById(placeIds);
         for (Place place : milestonePlaces) {
             MileStone milestone = MileStone.builder()
                     .latitude(place.getLatitude())
@@ -29,10 +28,7 @@ public class MileStoneDtoFactoryService {
             mileStones.add(milestone);
 
         }
-
         return mileStones;
-
-
 
     }
 

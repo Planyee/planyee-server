@@ -21,4 +21,6 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 
     @Query(value = "SELECT place FROM place JOIN user_place ON place.id = user_place.place_id WHERE user.id = :userId", nativeQuery = true)
     List<Place> findPrefferedPlaceByUserId(@Param("userId") Long userId);
+
+    List<Place> findByNameIn(List<String> userPrefferedPlaceNames);
 }

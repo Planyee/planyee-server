@@ -1,7 +1,6 @@
 package com.gdsc2023.planyee.domain.tmap.service;
 
 import com.gdsc2023.planyee.domain.tmap.dto.PlaceDistanceDto;
-import java.util.List;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
-public class AiRequestService {
+public class AiApiService {
 
     private static final String API_URL = "";
 
@@ -31,4 +30,6 @@ public class AiRequestService {
 
         return restTemplate.exchange(builder.toUriString(), HttpMethod.POST, entity, String.class);
     }
+
+
 }
