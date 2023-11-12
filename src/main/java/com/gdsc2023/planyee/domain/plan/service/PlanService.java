@@ -17,7 +17,7 @@ public class PlanService {
 
     private final PlanRepository planRepository;
     private final UserRepository userRepository;
-    public Long createPlanBy(SessionUser sessionUser, UserPlanRequestDto request, ) {
+    public Long createPlanBy(SessionUser sessionUser, UserPlanRequestDto request) {
         Plan plan = Plan.builder()
                 .name(request.getPlanName())
                 .destinationLatitude(request.getDestinationLatitude())
@@ -26,7 +26,6 @@ public class PlanService {
                 .sourceLongitude(request.getSourceLongitude())
                 .user(userRepository.findByOauthId(sessionUser.getOauthId()).get())
                 .date(request.getDate())
-                .placeList(userRouteDto.getMileStones())
                 .additionalDescription(request.getAdditionalCondition())
                 .build();
         Plan savedPlan = planRepository.save(plan);

@@ -35,7 +35,7 @@ public class PlanController {
                 .additionalCondition(request.getAdditionalCondition())
                 .build();
         UserRouteDto userRouteDto = routesApiController.calculateMilestones(user, placeRequests, userDescription);
-        return planService.createPlanBy(user, request, userRouteDto);
+        return planService.createPlanBy(user, request);
     }
 
 
