@@ -7,7 +7,10 @@ import com.gdsc2023.planyee.domain.place.dto.PlaceDto;
 import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import com.gdsc2023.planyee.domain.plan.dto.PlanDetail;
 import com.gdsc2023.planyee.domain.plan.dto.PlanSummary;
+import com.gdsc2023.planyee.domain.plan.dto.UserPlanRequestDto;
 import com.gdsc2023.planyee.domain.plan.repository.PlanRepository;
+import com.gdsc2023.planyee.domain.user.repository.UserRepository;
+import com.gdsc2023.planyee.global.config.oauth.SessionUser;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -55,4 +58,24 @@ public class PlanService {
 
         return new PlanDetail(sourceCoordinate, destinationCoordinate, placeDtos);
     }
+
+    private final UserRepository userRepository;
+    public Long createPlanBy(SessionUser sessionUser, UserPlanRequestDto request, List<Place> mileStones) {
+        Plan plan = Plan.builder()
+                        .name(request.getPlanName())
+                        .destinationLatitude(request.getDestinationLatitude())
+                        .destinationLongitude(request.getDestinationLongitude())
+                        .sourceLatitude(request.getSourceLatitude())
+                        .sourceLongitude(request.getSourceLongitude())
+                        .user(userRepository.findByOauthId(sessionUser.getOauthId())
+                                            .get())
+                        .placeList(mileStones)
+                        .date(request.getDate())
+                        .additionalDescription(request.getAdditionalCondition())
+                        .build();
+        Plan savedPlan = planRepository.save(plan);
+
+        return savedPlan.getId();
+    }
+
 }

@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-public class apiResponseParam {
+public class ApiResponseParam {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor

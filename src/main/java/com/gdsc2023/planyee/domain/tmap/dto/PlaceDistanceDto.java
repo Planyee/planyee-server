@@ -12,16 +12,16 @@ import lombok.ToString;
 @ToString
 public class PlaceDistanceDto {
 
-        List<String> userPrefferedPlaces;
-        List<String> planPrefferedPlaces;
+        List<String> userPreferredPlaces;
+        List<String> planPreferredPlaces;
         String additionalCondition;
         Map<String, BigDecimal> distances;
 
-    public PlaceDistanceDto(List<String> userPrefferedPlaces, List<String> planPrefferedPlaces,
+    public PlaceDistanceDto(List<String> userPrefferedPlaces, List<String> planPreferredPlaces,
                             String additionalCondition,
                             Map<String, BigDecimal> distances) {
-        this.userPrefferedPlaces = userPrefferedPlaces;
-        this.planPrefferedPlaces = planPrefferedPlaces;
+        this.userPreferredPlaces = userPrefferedPlaces;
+        this.planPreferredPlaces = planPreferredPlaces;
         this.additionalCondition = additionalCondition;
         this.distances = distances;
     }
