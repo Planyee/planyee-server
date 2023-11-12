@@ -26,18 +26,6 @@ public class CategoryFetchService {
     @Autowired
     PlaceRepository placeRepository;
 
-
-
-    public List<CategoryRecommendDto> getCategoryRecommendationOneByOne() {
-        List<Place> places = placeRepository.findRandomPlaceByCategories();
-
-
-        List<CategoryRecommendDto> recommends = places.stream()
-                .map(place -> new CategoryRecommendDto(place.getId(), place.getImageUrl()))
-                .toList();
-        return recommends;
-    }
-
     public AiPlaceRecommendDto createAiPlaceRecommendDto(SessionUser user, Long placeId) {
 
         Optional<User> currentUser = userRepository.findByOauthId(user.getOauthId());
@@ -53,7 +41,4 @@ public class CategoryFetchService {
                 currentUser.get().getId());
 
     }
-
-
-
 }

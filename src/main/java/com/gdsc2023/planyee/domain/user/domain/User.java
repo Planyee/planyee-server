@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -45,11 +46,12 @@ public class User extends BaseEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_category",
+            name = "user_place",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            inverseJoinColumns = @JoinColumn(name = "place_id")
     )
-    private List<Category> preferredCategories;
+    @Setter
+    private List<Place> preferredPlaces;
 
     @Builder
     private User(String oauthId, String nickname, Gender gender, Integer birthYear, Role role) {
