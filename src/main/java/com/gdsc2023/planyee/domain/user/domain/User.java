@@ -1,18 +1,26 @@
 package com.gdsc2023.planyee.domain.user.domain;
 
-import com.gdsc2023.planyee.domain.category.domain.Category;
+import java.util.List;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.plan.domain.Plan;
-import jakarta.persistence.*;
-
 import com.gdsc2023.planyee.domain.common.BaseEntity;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.util.List;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -45,11 +53,12 @@ public class User extends BaseEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_category",
+            name = "user_place",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            inverseJoinColumns = @JoinColumn(name = "place_id")
     )
-    private List<Category> preferredCategories;
+    @Setter
+    private List<Place> preferredPlaces;
 
     @Builder
     private User(String oauthId, String nickname, Gender gender, Integer birthYear, Role role) {

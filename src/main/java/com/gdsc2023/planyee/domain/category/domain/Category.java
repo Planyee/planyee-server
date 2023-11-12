@@ -1,20 +1,20 @@
 package com.gdsc2023.planyee.domain.category.domain;
 
+import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import com.gdsc2023.planyee.domain.place.domain.Place;
-import com.gdsc2023.planyee.domain.user.domain.User;
-
-import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Getter
-@Entity
 @NoArgsConstructor
+@Entity
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, updatable = false)
@@ -28,13 +28,4 @@ public class Category {
 
     @ManyToMany(mappedBy = "categoryList")
     private List<Place> placeList;
-
-    @ManyToMany(mappedBy = "preferredCategories")
-    private List<User> userList;
-
-    @Builder
-    public Category(String name, String mainCategory) {
-        this.name = name;
-        this.mainCategory = mainCategory;
-    }
 }

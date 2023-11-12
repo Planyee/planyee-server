@@ -1,25 +1,32 @@
 package com.gdsc2023.planyee.domain.plan.domain;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import com.gdsc2023.planyee.domain.common.BaseEntity;
 import com.gdsc2023.planyee.domain.place.domain.Place;
+import com.gdsc2023.planyee.domain.plan.dto.PlanCreateRequest;
 import com.gdsc2023.planyee.domain.user.domain.User;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
-
 @Getter
-@Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Plan extends BaseEntity {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, updatable = false)
@@ -55,20 +62,20 @@ public class Plan extends BaseEntity {
     @Column
     private LocalDate date;
 
-    @Builder
-    public Plan(String name,
-        User user,
-        BigDecimal sourceLatitude,
-        BigDecimal sourceLongitude,
-        BigDecimal destinationLatitude,
-        BigDecimal destinationLongitude,
-        LocalDate date) {
-        this.name = name;
-        this.user = user;
-        this.sourceLatitude = sourceLatitude;
-        this.sourceLongitude = sourceLongitude;
-        this.destinationLatitude = destinationLatitude;
-        this.destinationLongitude = destinationLongitude;
-        this.date = date;
+    @Column
+    private String additionalDescription;
+
+    public static Plan toEntity(User user, PlanCreateRequest request, List<Place> recommendPlaces) {
+        return Plan.builder()
+                .name(request.getPlanName())
+                .user(user)
+                .placeList(recommendPlaces)
+                .sourceLatitude(request.getSourceLatitude())
+                .sourceLongitude(request.getSourceLongitude())
+                .destinationLatitude(request.getDestinationLatitude())
+                .destinationLongitude(request.getDestinationLongitude())
+                .date(request.getDate())
+                .additionalDescription(request.getAdditionalCondition())
+                .build();
     }
 }
