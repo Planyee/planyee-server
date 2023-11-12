@@ -55,20 +55,21 @@ public class Plan extends BaseEntity {
     @Column
     private LocalDate date;
 
+    @Column
+    private String additionalDescription;
+
     @Builder
-    public Plan(String name,
-        User user,
-        BigDecimal sourceLatitude,
-        BigDecimal sourceLongitude,
-        BigDecimal destinationLatitude,
-        BigDecimal destinationLongitude,
-        LocalDate date) {
+    public Plan(String name, User user, List<Place> placeList, BigDecimal sourceLatitude, BigDecimal sourceLongitude,
+                BigDecimal destinationLatitude, BigDecimal destinationLongitude, LocalDate date,
+                String additionalDescription) {
         this.name = name;
         this.user = user;
+        this.placeList = placeList;
         this.sourceLatitude = sourceLatitude;
         this.sourceLongitude = sourceLongitude;
         this.destinationLatitude = destinationLatitude;
         this.destinationLongitude = destinationLongitude;
         this.date = date;
+        this.additionalDescription = additionalDescription;
     }
 }

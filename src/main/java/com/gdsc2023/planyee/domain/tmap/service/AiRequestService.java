@@ -1,7 +1,5 @@
 package com.gdsc2023.planyee.domain.tmap.service;
 
-import com.gdsc2023.planyee.domain.tmap.domain.ApiRequestParam;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
 import com.gdsc2023.planyee.domain.tmap.dto.PlaceDistanceDto;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -18,7 +16,7 @@ public class AiRequestService {
 
     private static final String API_URL = "";
 
-    public ResponseEntity<String> requestMileStonesWith(List<PlaceDistanceDto> placeDistances) {
+    public ResponseEntity<String> requestMileStonesWith(PlaceDistanceDto placeDistances) {
         RestTemplate restTemplate = new RestTemplate();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(API_URL);

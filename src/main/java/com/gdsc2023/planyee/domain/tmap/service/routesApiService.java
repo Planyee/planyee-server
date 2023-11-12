@@ -1,11 +1,10 @@
 package com.gdsc2023.planyee.domain.tmap.service;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.place.repository.PlaceRepository;
 import com.gdsc2023.planyee.domain.tmap.domain.ApiRequestParam;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
+import com.gdsc2023.planyee.domain.tmap.domain.ApiResponseParam.Coordinate;
 import com.gdsc2023.planyee.domain.tmap.dto.PlaceDistanceDto;
 import com.gdsc2023.planyee.domain.tmap.util.CalculationUtil;
 import java.math.BigDecimal;
@@ -53,15 +52,15 @@ public class routesApiService {
 
     }
 
-    public List<PlaceDistanceDto> calculateDistanceWith(List<Coordinate> coordinates) {
+    public Map<String, BigDecimal> calculateDistanceWith(List<Coordinate> coordinates) {
 
         List<Place> places = placeRepository.findAll();
 
-        Map<Long, BigDecimal> result = new HashMap<>();
-        List<PlaceDistanceDto> placeDistanceList = new ArrayList<>();
+        Map<String, BigDecimal> result = new HashMap<>();
+
 
         for (Place place : places) {
-            Long placeId = place.getId();
+            String name = place.getName();
             BigDecimal placeLatitude = place.getLatitude();
             BigDecimal placeLongitude = place.getLongitude();
 
@@ -71,18 +70,16 @@ public class routesApiService {
 
                 BigDecimal distance = CalculationUtil.calculateDistance(placeLatitude, placeLongitude, pointLongitude, pointLatitude);
 
-                if(!result.containsKey(placeId)) {
-                    result.put(placeId, distance);
-                } else if(result.get(placeId).compareTo(distance) > 0) {
-                    result.put(placeId, distance);
+                if(!result.containsKey(name)) {
+                    result.put(name, distance);
+                } else if(result.get(name).compareTo(distance) > 0) {
+                    result.put(name, distance);
                 }
             }
 
-            PlaceDistanceDto placeDistanceDto = new PlaceDistanceDto();
-            placeDistanceList.add(placeDistanceDto);
         }
 
-        return placeDistanceList;
+        return result;
 
     }
 

@@ -5,13 +5,15 @@ import com.gdsc2023.planyee.domain.place.repository.PlaceRepository;
 import com.gdsc2023.planyee.domain.tmap.dto.MileStone;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MileStoneDtoFactoryService {
 
 
-    private PlaceRepository placeRepository;
+    private final PlaceRepository placeRepository;
 
     public List<MileStone> createMileStonesWith(List<Long> placeIds) {
 
@@ -24,7 +26,6 @@ public class MileStoneDtoFactoryService {
                     .longitude(place.getLongitude())
                     .placeDescription(place.getDescription())
                     .build();
-            MileStone mileStone = milestone;
             mileStones.add(milestone);
 
         }

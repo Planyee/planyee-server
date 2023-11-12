@@ -2,9 +2,9 @@ package com.gdsc2023.planyee.domain.tmap.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Feature;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.FeatureCollection;
+import com.gdsc2023.planyee.domain.tmap.domain.ApiResponseParam.Coordinate;
+import com.gdsc2023.planyee.domain.tmap.domain.ApiResponseParam.Feature;
+import com.gdsc2023.planyee.domain.tmap.domain.ApiResponseParam.FeatureCollection;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

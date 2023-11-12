@@ -5,8 +5,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdsc2023.planyee.domain.place.domain.Place;
 import com.gdsc2023.planyee.domain.place.repository.PlaceRepository;
+import com.gdsc2023.planyee.domain.plan.dto.UserPlanDescriptionDto;
+import com.gdsc2023.planyee.domain.plan.dto.UserPlanRequestDto;
 import com.gdsc2023.planyee.domain.tmap.domain.ApiRequestParam;
-import com.gdsc2023.planyee.domain.tmap.domain.apiResponseParam.Coordinate;
+import com.gdsc2023.planyee.domain.tmap.domain.ApiResponseParam.Coordinate;
 import com.gdsc2023.planyee.domain.tmap.dto.AiResponseParam;
 import com.gdsc2023.planyee.domain.tmap.dto.EndPoint;
 import com.gdsc2023.planyee.domain.tmap.dto.MileStone;
@@ -17,16 +19,13 @@ import com.gdsc2023.planyee.domain.tmap.service.AiRequestService;
 import com.gdsc2023.planyee.domain.tmap.service.MileStoneDtoFactoryService;
 import com.gdsc2023.planyee.domain.tmap.service.routesApiService;
 import com.gdsc2023.planyee.domain.tmap.util.ApiResponseParserUtil;
-import com.gdsc2023.planyee.domain.user.domain.User;
-import com.gdsc2023.planyee.domain.user.repository.UserRepository;
 import com.gdsc2023.planyee.global.config.oauth.LoginUser;
 import com.gdsc2023.planyee.global.config.oauth.SessionUser;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,16 +39,27 @@ public class routesApiController {
     private final PlaceRepository placeRepository;
 
 
-    public UserRouteDto calculateMilestones(@LoginUser SessionUser sessionUser, @RequestBody ApiRequestParam requestParam) {
+    public UserRouteDto calculateMilestones(@LoginUser SessionUser sessionUser,
+                                            ApiRequestParam requestParam,
+                                            UserPlanDescriptionDto planRequest) {
 
         ResponseEntity<String> reponses = routesApiService.requestCarRoutes(requestParam);
-        List<Place> prefferedPlaces = placeRepository.findPrefferedPlaceByUserId(sessionUser.getId());
+        List<String> userPreferredPlaces = placeRepository.findPrefferedPlaceByUserId(sessionUser.getId()).stream()
+                .map(Place::getName)
+                .toList();
 
         try {
             List<Coordinate> coordinates = ApiResponseParserUtil.ParseToCoordinates(reponses);
-            List<PlaceDistanceDto> placeDistances = routesApiService.calculateDistanceWith(
+            Map<String, BigDecimal> placeDistances = routesApiService.calculateDistanceWith(
                     coordinates);
-            List<MileStone> mileStones = requestMilestoneToAi(placeDistances);
+            PlaceDistanceDto aiRequest = PlaceDistanceDto.builder()
+                                                     .additionalCondition(planRequest.getAdditionalCondition())
+                                                     .planPreferredPlaces(planRequest.getPlanPreferedPlaces())
+                                                     .distances(placeDistances)
+                                                     .userPreferredPlaces(userPreferredPlaces)
+                                                     .build();
+
+            List<MileStone> mileStones = requestMilestoneToAi(aiRequest);
             return new UserRouteDto(new StartPoint(requestParam.getStartX(), requestParam.getStartY()), mileStones, new EndPoint(requestParam.getEndX(), requestParam.getEndY()));
 
         } catch (JsonProcessingException e) {
@@ -58,7 +68,7 @@ public class routesApiController {
     }
 
 
-    public List<MileStone> requestMilestoneToAi(List<PlaceDistanceDto> placeDistances) {
+    public List<MileStone> requestMilestoneToAi(PlaceDistanceDto placeDistances) {
         // place id들
         ResponseEntity<String> milestones = aiRequestService.requestMileStonesWith(placeDistances);
 
@@ -76,6 +86,9 @@ public class routesApiController {
         }
 
     }
+
+
+
 
 
 
