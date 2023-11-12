@@ -7,6 +7,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserPlanDescriptionDto {
-    private List<String> planPreferedPlaces;
+    private List<String> planPreferredPlaces;
     private String additionalCondition;
 }

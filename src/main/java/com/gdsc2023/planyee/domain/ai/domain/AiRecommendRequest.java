@@ -1,4 +1,4 @@
-package com.gdsc2023.planyee.domain.tmap.dto;
+package com.gdsc2023.planyee.domain.ai.domain;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,17 +10,16 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class PlaceDistanceDto {
-
+public class AiRecommendRequest {
         List<String> userPreferredPlaces;
         List<String> planPreferredPlaces;
         String additionalCondition;
         Map<String, BigDecimal> distances;
 
-    public PlaceDistanceDto(List<String> userPrefferedPlaces, List<String> planPreferredPlaces,
-                            String additionalCondition,
-                            Map<String, BigDecimal> distances) {
-        this.userPreferredPlaces = userPrefferedPlaces;
+    public AiRecommendRequest(List<String> userPreferredPlaces, List<String> planPreferredPlaces,
+                              String additionalCondition,
+                              Map<String, BigDecimal> distances) {
+        this.userPreferredPlaces = userPreferredPlaces;
         this.planPreferredPlaces = planPreferredPlaces;
         this.additionalCondition = additionalCondition;
         this.distances = distances;

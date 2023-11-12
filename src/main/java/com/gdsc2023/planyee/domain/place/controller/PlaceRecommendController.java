@@ -1,17 +1,17 @@
 package com.gdsc2023.planyee.domain.place.controller;
 
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.gdsc2023.planyee.domain.place.dto.PlaceNameWithImageUrl;
 import com.gdsc2023.planyee.domain.place.service.PlaceRecommendService;
 import com.gdsc2023.planyee.global.config.oauth.LoginUser;
 import com.gdsc2023.planyee.global.config.oauth.SessionUser;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class PlaceRecommendController {
     private final PlaceRecommendService placeRecommendService;
 
@@ -21,7 +21,7 @@ public class PlaceRecommendController {
     }
 
     @PostMapping("/select")
-    public void postUserPrefferedPlaces(@LoginUser SessionUser user, List<String> userPrefferedPlaceNames) {
-        placeRecommendService.saveUserPrefferedPlaces(user.getId(), userPrefferedPlaceNames);
+    public void postUserPreferredPlaces(@LoginUser SessionUser user, List<String> userPreferredPlaceNames) {
+        placeRecommendService.saveUserPreferredPlaces(user.getId(), userPreferredPlaceNames);
     }
 }

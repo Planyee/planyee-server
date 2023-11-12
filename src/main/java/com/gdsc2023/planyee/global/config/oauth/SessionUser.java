@@ -1,8 +1,7 @@
 package com.gdsc2023.planyee.global.config.oauth;
 
-import com.gdsc2023.planyee.global.util.DateUtil;
 import java.io.Serializable;
-
+import com.gdsc2023.planyee.global.util.DateUtil;
 import com.gdsc2023.planyee.domain.user.domain.Gender;
 import com.gdsc2023.planyee.domain.user.domain.User;
 

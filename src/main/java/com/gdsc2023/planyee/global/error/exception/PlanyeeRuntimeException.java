@@ -1,7 +1,6 @@
 package com.gdsc2023.planyee.global.error.exception;
 
 public class PlanyeeRuntimeException extends RuntimeException {
-
     private final String messageKey;
     private final Object[] params;
 

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
 @AllArgsConstructor
+@Data
 public class Coordinate {
     private BigDecimal latitude;
     private BigDecimal longitude;

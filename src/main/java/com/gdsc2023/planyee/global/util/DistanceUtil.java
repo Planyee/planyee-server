@@ -1,10 +1,9 @@
-package com.gdsc2023.planyee.domain.tmap.util;
+package com.gdsc2023.planyee.global.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CalculationUtil {
-
+public class DistanceUtil {
     private static final BigDecimal EARTH_RADIUS = new BigDecimal("6371000"); // 지구의 반지름 (미터 단위)
     private static final int SCALE = 5; // BigDecimal 연산의 정밀도;
 

@@ -3,25 +3,20 @@ package com.gdsc2023.planyee.global.config.security;
 import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.gdsc2023.planyee.domain.user.service.CustomOAuth2UserService;
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import com.gdsc2023.planyee.domain.user.service.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-
     private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
