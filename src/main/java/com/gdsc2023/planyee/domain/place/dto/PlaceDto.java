@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.domain.place.dto;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,8 @@ public class PlaceDto {
     private Set<String> mainCategory;
     private Set<String> subCategory;
     private String address;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
     private String description;
     private String etc;
 
@@ -23,6 +26,8 @@ public class PlaceDto {
                 new HashSet<>(mainCategories),
                 new HashSet<>(subCategories),
                 place.getAddress(),
+                place.getLatitude(),
+                place.getLongitude(),
                 place.getDescription(),
                 place.getEtc()
         );
