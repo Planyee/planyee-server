@@ -20,8 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class AiRecommendService {
-    @Value("${ai-url}")
-    private String API_URL;
+    private String API_URL = "http://13.209.133.64:54413";
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
