@@ -77,5 +77,6 @@ public class Plan extends BaseEntity {
                 .date(request.getDate())
                 .additionalDescription(request.getAdditionalCondition())
                 .build();
+
     }
 }
