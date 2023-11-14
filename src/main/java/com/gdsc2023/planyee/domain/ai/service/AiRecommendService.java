@@ -3,6 +3,7 @@ package com.gdsc2023.planyee.domain.ai.service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,7 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class AiRecommendService {
-    private static final String API_URL = "";
+    @Value("${ai-url}")
+    private final String API_URL;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
