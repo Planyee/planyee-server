@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.domain.place.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class PlaceRecommendController {
     private final PlaceRecommendService placeRecommendService;
+    private final HttpSession httpSession;
 
     @GetMapping("/select")
     public List<PlaceNameWithImageUrl> getPlaceInEachCategory() {
@@ -22,7 +24,8 @@ public class PlaceRecommendController {
     }
 
     @PostMapping("/select")
-    public void postUserPreferredPlaces(@LoginUser SessionUser user, @RequestBody List<String> userPreferredPlaceNames) {
+    public void postUserPreferredPlaces(@RequestBody List<String> userPreferredPlaceNames) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         placeRecommendService.saveUserPreferredPlaces(user.getId(), userPreferredPlaceNames);
     }
 }
