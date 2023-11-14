@@ -18,7 +18,6 @@ import com.gdsc2023.planyee.global.config.oauth.OAuthAttributes;
 import com.gdsc2023.planyee.global.config.oauth.SessionUser;
 import lombok.RequiredArgsConstructor;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
@@ -41,7 +40,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // DB에 유저정보 업데이트 & 세션 저장
         User user = save(attributes);
         httpSession.setAttribute("user", new SessionUser(user));
-        logger.info("===============" + httpSession.getId() + "===============");
+        System.out.println("===============" + httpSession.getId() + "===============");
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRole().getKey())),
