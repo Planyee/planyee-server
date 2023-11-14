@@ -3,6 +3,7 @@ package com.gdsc2023.planyee.domain.place.controller;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.gdsc2023.planyee.domain.place.dto.PlaceNameWithImageUrl;
 import com.gdsc2023.planyee.domain.place.service.PlaceRecommendService;
@@ -21,7 +22,7 @@ public class PlaceRecommendController {
     }
 
     @PostMapping("/select")
-    public void postUserPreferredPlaces(@LoginUser SessionUser user, List<String> userPreferredPlaceNames) {
+    public void postUserPreferredPlaces(@LoginUser SessionUser user, @RequestBody List<String> userPreferredPlaceNames) {
         placeRecommendService.saveUserPreferredPlaces(user.getId(), userPreferredPlaceNames);
     }
 }
