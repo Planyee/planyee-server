@@ -47,16 +47,16 @@ public class Plan extends BaseEntity {
     )
     private List<Place> placeList;
 
-    @Column(nullable = false)
+    @Column(precision = 11, scale = 8, nullable = false)
     private BigDecimal sourceLatitude;
 
-    @Column(nullable = false)
+    @Column(precision = 11, scale = 8, nullable = false)
     private BigDecimal sourceLongitude;
 
-    @Column(nullable = false)
+    @Column(precision = 11, scale = 8, nullable = false)
     private BigDecimal destinationLatitude;
 
-    @Column(nullable = false)
+    @Column(precision = 11, scale = 8, nullable = false)
     private BigDecimal destinationLongitude;
 
     @Column
