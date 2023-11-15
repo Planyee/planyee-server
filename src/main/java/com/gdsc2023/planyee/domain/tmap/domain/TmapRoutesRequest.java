@@ -3,10 +3,14 @@ package com.gdsc2023.planyee.domain.tmap.domain;
 import java.math.BigDecimal;
 import jakarta.validation.constraints.NotNull;
 import com.gdsc2023.planyee.domain.plan.dto.PlanCreateRequest;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class TmapRoutesRequest {
     @NotNull
