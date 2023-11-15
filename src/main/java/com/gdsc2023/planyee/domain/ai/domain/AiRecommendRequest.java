@@ -14,14 +14,14 @@ public class AiRecommendRequest {
         List<String> userPreferredPlaces;
         List<String> planPreferredPlaces;
         String additionalCondition;
-        Map<String, BigDecimal> distances;
+        Map<String, BigDecimal> allPlaces;
 
     public AiRecommendRequest(List<String> userPreferredPlaces, List<String> planPreferredPlaces,
                               String additionalCondition,
-                              Map<String, BigDecimal> distances) {
+                              Map<String, BigDecimal> allPlaces) {
         this.userPreferredPlaces = userPreferredPlaces;
         this.planPreferredPlaces = planPreferredPlaces;
         this.additionalCondition = additionalCondition;
-        this.distances = distances;
+        this.allPlaces = allPlaces;
     }
 }
