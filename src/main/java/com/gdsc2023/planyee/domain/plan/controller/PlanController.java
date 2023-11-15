@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.gdsc2023.planyee.domain.plan.domain.Plan;
 import com.gdsc2023.planyee.domain.plan.dto.PlanDetail;
@@ -31,7 +32,7 @@ public class PlanController {
     }
 
     @PostMapping("/main")
-    public Long createPlan(PlanCreateRequest request) {
+    public Long createPlan(@RequestBody PlanCreateRequest request) {
         //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         System.out.println(request.getPlanName());
         System.out.println(request.getSourceLatitude());
