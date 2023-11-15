@@ -30,7 +30,7 @@ public class PlaceRecommendController {
 
     @PostMapping("/select")
     public void postUserPreferredPlaces(@RequestBody List<String> userPreferredPlaceNames) {
-//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        placeRecommendService.saveUserPreferredPlaces(3L, userPreferredPlaceNames);
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        placeRecommendService.saveUserPreferredPlaces(user.getId(), userPreferredPlaceNames);
     }
 }

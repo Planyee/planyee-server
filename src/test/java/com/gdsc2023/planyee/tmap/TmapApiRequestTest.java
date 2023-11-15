@@ -35,6 +35,7 @@ public class TmapApiRequestTest {
 
     @Autowired
     RoutesApiService apiRoutesService;
+    @Autowired
     AiRecommendService aiRecommendService;
 //    @Autowired
     //private MockRestServiceServer mockServer;
@@ -76,7 +77,7 @@ public class TmapApiRequestTest {
         Map<String, BigDecimal> placeDistance = apiRoutesService.calculateDistance(coordinates);
         List<String> userPreferredPlaces = List.of("삼청각", "춘천손칼국수", "사프란");
         List<String> planPreferredPlaces = List.of("명동교자", "지대방", "사유");
-        String additionalCondition = "아무거나";
+        String additionalCondition = "에베레스트산이 보이는 위치면 좋겠어요.";
 
         List<String> stringList = aiRecommendService.requestRecommendPlaces(placeDistance, userPreferredPlaces,
                 planPreferredPlaces, additionalCondition);
@@ -160,9 +161,6 @@ public class TmapApiRequestTest {
         public BigDecimal placeLongitude;
         public BigDecimal placeLatitude;
         public BigDecimal distance;
-
-
-
 
         public PlaceDistance(long id, BigDecimal placeLatitude, BigDecimal placeLongitude,  BigDecimal distance) {
             this.id = id;

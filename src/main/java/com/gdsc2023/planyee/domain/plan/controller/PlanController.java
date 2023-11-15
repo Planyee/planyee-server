@@ -1,5 +1,6 @@
 package com.gdsc2023.planyee.domain.plan.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class PlanController {
     private final PlanService planService;
+    private final HttpSession httpSession;
 
     @GetMapping("/main")
     public List<PlanSummary> getPlanSummarys() {
-        //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        return planService.getPlanSummarys(3L);
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        return planService.getPlanSummarys(user.getId());
     }
 
     @GetMapping("/list/{planId}")
@@ -33,10 +35,10 @@ public class PlanController {
 
     @PostMapping("/main")
     public Long createPlan(@RequestBody PlanCreateRequest request) {
-        //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         System.out.println(request.getPlanName());
         System.out.println(request.getSourceLatitude());
-        Plan plan = planService.createPlan(3L, request);
+        Plan plan = planService.createPlan(user.getId(), request);
         return plan.getId();
     }
 }
