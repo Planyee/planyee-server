@@ -33,10 +33,8 @@ public class PlanController {
     @PostMapping("/main")
     public Long createPlan(PlanCreateRequest request) {
         //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        System.out.println(request.getPlanName());
         System.out.println(request.getSourceLatitude());
-        System.out.println(request.getSourceLongitude());
-        System.out.println(request.getDestinationLatitude());
-        System.out.println(request.getDestinationLongitude());
         Plan plan = planService.createPlan(3L, request);
         return plan.getId();
     }
