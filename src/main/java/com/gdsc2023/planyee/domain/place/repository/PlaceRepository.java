@@ -16,7 +16,7 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
             + "WHERE rn = 1;", nativeQuery = true)
     List<Place> findRandomPlaceEachCategories();
 
-    @Query(value = "SELECT * FROM place JOIN user_place ON place.id = user_place.place_id WHERE user.id = :userId", nativeQuery = true)
+    @Query(value = "SELECT * FROM place JOIN user_place ON place.id = user_place.place_id WHERE user_place.user_id = :userId", nativeQuery = true)
     List<Place> findPreferredPlaceByUserId(@Param("userId") Long userId);
 
     List<Place> findByNameIn(List<String> userPreferredPlaceNames);
