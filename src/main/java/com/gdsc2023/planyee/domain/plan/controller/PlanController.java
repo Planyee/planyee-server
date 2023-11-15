@@ -20,8 +20,9 @@ public class PlanController {
     private final PlanService planService;
 
     @GetMapping("/main")
-    public List<PlanSummary> getPlanSummarys(@LoginUser SessionUser user) {
-        return planService.getPlanSummarys(user.getId());
+    public List<PlanSummary> getPlanSummarys() {
+        //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        return planService.getPlanSummarys(3L);
     }
 
     @GetMapping("/list/{planId}")
@@ -30,8 +31,9 @@ public class PlanController {
     }
 
     @PostMapping("/main")
-    public Long createPlan(@LoginUser SessionUser user, PlanCreateRequest request) {
-        Plan plan = planService.createPlan(user.getId(), request);
+    public Long createPlan(PlanCreateRequest request) {
+        //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        Plan plan = planService.createPlan(3L, request);
         return plan.getId();
     }
 }
