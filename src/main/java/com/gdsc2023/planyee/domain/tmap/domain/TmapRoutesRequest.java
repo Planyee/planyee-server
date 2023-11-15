@@ -23,7 +23,7 @@ public class TmapRoutesRequest {
     private BigDecimal startY;
 
     public static TmapRoutesRequest create(PlanCreateRequest request) {
-        return new TmapRoutesRequest(request.getDestinationLatitude(), request.getDestinationLongitude(),
-                request.getSourceLatitude(), request.getSourceLongitude());
+        return new TmapRoutesRequest(request.getDestinationLongitude(), request.getDestinationLatitude(),
+                request.getSourceLongitude(), request.getSourceLatitude());
     }
 }
