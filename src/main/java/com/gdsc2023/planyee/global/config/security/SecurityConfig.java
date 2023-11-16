@@ -51,7 +51,7 @@ public class SecurityConfig {
                         "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         configuration.setExposedHeaders(
                 Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-        configuration.setAllowCredentials(true);
+//        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
