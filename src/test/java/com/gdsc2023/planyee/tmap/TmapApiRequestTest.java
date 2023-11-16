@@ -67,7 +67,7 @@ public class TmapApiRequestTest {
         Map<String, BigDecimal> placeDistance = apiRoutesService.calculateDistance(coordinates);
         List<String> userPreferredPlaces = List.of("삼청각", "춘천손칼국수", "사프란");
         List<String> planPreferredPlaces = List.of("명동교자", "지대방", "사유");
-        String additionalCondition = "남해 바다가 인접해 있으면 좋겠어요.";
+        String additionalCondition = "맛있는 음식이 제일 좋아";
 
         List<String> stringList = aiRecommendService.requestRecommendPlaces(placeDistance, userPreferredPlaces,
                 planPreferredPlaces, additionalCondition);
