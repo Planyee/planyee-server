@@ -3,7 +3,6 @@ package com.gdsc2023.planyee.domain.ai.service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -44,6 +43,7 @@ public class AiRecommendService {
     public List<String> convertJsonToList(ResponseEntity<String> response) {
         try {
             String json = response.getBody();
+            System.out.println(json);
             List<String> list = objectMapper.readValue(json, new TypeReference<>() {});
             return list;
         } catch (JsonProcessingException e) {
