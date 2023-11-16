@@ -59,7 +59,7 @@ public class RoutesApiService {
                 BigDecimal pointLongitude = coordinate.getLongitude();
 
                 BigDecimal distance = DistanceUtil.calculateDistance(
-                        placeLatitude, placeLongitude, pointLongitude, pointLatitude);
+                        placeLatitude, placeLongitude, pointLatitude, pointLongitude);
 
                 if (!result.containsKey(name)) {
                     result.put(name, distance);
